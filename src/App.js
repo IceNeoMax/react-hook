@@ -25,13 +25,14 @@ export default connect((state) => state)(
     componentDidMount() {
       const self = this;
       fetch('http://localhost:3001/charities')
-        .then(function(resp) { return resp.json(); })
-        .then(function(data) {
-          self.setState({ charities: data }) });
+        .then(function (resp) { return resp.json(); })
+        .then(function (data) {
+          self.setState({ charities: data })
+        });
 
       fetch('http://localhost:3001/payments')
-        .then(function(resp) { return resp.json() })
-        .then(function(data) {
+        .then(function (resp) { return resp.json() })
+        .then(function (data) {
           self.props.dispatch({
             type: 'UPDATE_TOTAL_DONATE',
             amount: summaryDonations(data.map((item) => (item.amount))),
@@ -41,13 +42,13 @@ export default connect((state) => state)(
 
     render() {
       const self = this;
-      const cards = this.state.charities.map(function(item, i) {
+      const cards = this.state.charities.map(function (item, i) {
         const payments = [10, 20, 50, 100, 500].map((amount, j) => (
           <label key={j}>
             <input
               type="radio"
               name="payment"
-              onClick={function() {
+              onClick={function () {
                 self.setState({ selectedAmount: amount })
               }} /> {amount}
           </label>
@@ -86,13 +87,14 @@ export default connect((state) => state)(
 
 function handlePay(id, amount, currency) {
   const self = this;
-  return function() {
+  return function () {
     fetch('http://localhost:3001/payments', {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: `{ "charitiesId": ${id}, "amount": ${amount}, "currency": "${currency}" }`,
     })
-      .then(function(resp) { return resp.json(); })
-      .then(function() {
+      .then(function (resp) { return resp.json(); })
+      .then(function () {
         self.props.dispatch({
           type: 'UPDATE_TOTAL_DONATE',
           amount,
@@ -102,7 +104,7 @@ function handlePay(id, amount, currency) {
           message: `Thanks for donate ${amount}!`,
         });
 
-        setTimeout(function() {
+        setTimeout(function () {
           self.props.dispatch({
             type: 'UPDATE_MESSAGE',
             message: '',
