@@ -1,9 +1,15 @@
 {
   "presets": [
     "env",
-    "react"
+    "react",
   ],
   "plugins": [
+    [
+      "transform-runtime",
+      {
+        "regenerator": true
+      }
+    ],
     "syntax-dynamic-import",
   ]
 }
