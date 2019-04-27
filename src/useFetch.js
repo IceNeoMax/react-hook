@@ -22,7 +22,7 @@ export const useFetch = (url, method, params, headers) => {
     })();
     const cleanup = () => { mounted = false; };
     return cleanup;
-  }, [url, params]);
+  }, [url, params, method, headers]);
   return [data, loading];
 };
 
