@@ -6,7 +6,7 @@ import fetch from 'isomorphic-fetch';
 import { summaryDonations } from './helpers';
 import { useFetch } from './useFetch';
 import { GET_METHOD, POST_METHOD } from './const';
-
+import RenderToltalPayment from './total-payment';
 
 const Card = styled.div`
   margin: 10px;
@@ -20,17 +20,21 @@ const RenderCharities = () => {
   if (!data) return null;
   return <div>Loading...</div>;
 }
+
+
+
 const App = () => {
   // const [charities, setCharities] = useState([]);
   // const [selectedAmount, setSelectedAmount] = useState(10);
 
   return (
     <div>
+      <RenderToltalPayment />
       <RenderCharities />
     </div>
   )
 }
-export default connect((state) => state)(App);
+export default App;
 
 // export default connect((state) => state)(
 //   class App extends Component {
