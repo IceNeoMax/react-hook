@@ -11,11 +11,11 @@ const RenderToltalPayment = (props) => {
   if (!data) return null;
   else {
     donate = summaryDonations(data.map((item) => (item.amount)))
-    // props.dispatch({
-    //   type: 'UPDATE_TOTAL_DONATE',
-    //   amount
-    // });
-    // payment = summaryDonations(data.map((item) => (item.amount)))
+    props.dispatch({
+      type: 'UPDATE_TOTAL_DONATE',
+      amount: donate
+    });
+    payment = summaryDonations(data.map((item) => (item.amount)))
   }
   return <div><p>All donations: {donate}</p></div>;
 };
