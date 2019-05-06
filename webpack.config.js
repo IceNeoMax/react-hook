@@ -30,6 +30,16 @@ const config = {
       },
     ],
   },
+  resolve: {
+    alias: {
+      app: path.resolve(__dirname, 'src/'),
+      api: path.resolve(__dirname, 'src/api'),
+      action: path.resolve(__dirname, 'src/action/'),
+      reducer: path.resolve(__dirname, 'src/reducer/'),
+      hooks: path.resolve(__dirname, 'src/hooks/'),
+      components: path.resolve(__dirname, 'src/components/'),
+    },
+  },
 };
 
 module.exports = config;
