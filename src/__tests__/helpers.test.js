@@ -1,5 +1,7 @@
+// TODO: fix absolute import
+
 // helpers tests
-import { summaryDonations } from 'helpers';
+import { summaryDonations } from '../helpers';
 
 describe('helpers', function () {
   test('`summaryDonations` should calculate donations correctly', function () {
@@ -7,32 +9,37 @@ describe('helpers', function () {
   });
 });
 
-// action tests
-import * as actions from 'action';
+// redux tests
+import * as action from '../action';
+import donation from '../reducer/donation';
 
-const donation = 123;
+const donate = 123;
 const mess = 'ahihi';
 
-describe('updateTotalDonate', function () {
-  test('updateTotalDonate should update correctly', function () {
-    const amount = donation;
+describe('updateTotalDonate', () => {
+  test('should return the initial state', () => {
+    expect(donation(undefined, {})).toEqual({ donate: 0, message: '' });
+  });
+
+  test('updateTotalDonate should update correctly', () => {
+    const amount = donate;
     const expectedAction = {
-      type: actions.UPDATE_TOTAL_DONATE,
+      type: action.UPDATE_TOTAL_DONATE,
       amount,
     }
-    expect(actions.updateTotalDonate(amount)).toEqual(expectedAction);
+    expect(action.updateTotalDonate(amount)).toEqual(expectedAction);
+    expect(donation({ donate: 0 }, expectedAction)).toEqual({ donate: amount });
   });
 });
 
-describe('updateMessage', function () {
-  test('updateMessage should update correctly', function () {
+describe('updateMessage', () => {
+  test('updateMessage should update correctly', () => {
     const message = mess;
     const expectedAction = {
-      type: actions.UPDATE_MESSAGE,
+      type: action.UPDATE_MESSAGE,
       message,
     }
-    expect(actions.updateTotalDonate(message)).toEqual(expectedAction);
+    expect(action.updateMessage(message)).toEqual(expectedAction);
+    expect(donation({ message: '' }, expectedAction)).toEqual({ message });
   });
 });
-
-// reducer tests

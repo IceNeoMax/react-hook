@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 const RenderToltalPayment = (props) => {
   const [data, loading] = useFetch('/payments', GET_METHOD);
   useEffect(() => {
-    const donate = summaryDonations(data.map((item) => (item.amount)))
+    const donate = summaryDonations(data.map(item => item.amount))
     props.updateTotalDonate(donate);
   }, [data]);
   if (loading) return <div>Loading...</div>;

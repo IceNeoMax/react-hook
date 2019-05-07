@@ -1,4 +1,4 @@
-import { UPDATE_TOTAL_DONATE, UPDATE_MESSAGE } from 'action'
+import { UPDATE_TOTAL_DONATE, UPDATE_MESSAGE } from '../action'
 
 const _state = {
   donate: 0,
